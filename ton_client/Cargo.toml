@@ -110,7 +110,7 @@ pretty_assertions = '1.2'
 
 
 [features]
-default = [ 'std' ]
+default = [ 'std', 'native-tls' ]
 include-zstd = [ 'ton_block/gosh', 'ton_vm/gosh' ]
 std = [
     'tokio/rt-multi-thread',
@@ -118,24 +118,15 @@ std = [
     'tokio/time',
     'tokio/net',
     'tokio/fs',
-    'reqwest/default',
-    'tokio-tungstenite',
     'home',
     'include-zstd',
     'zstd'
 ]
-rustls = [
-    'tokio/rt-multi-thread',
-    'tokio/macros',
-    'tokio/time',
-    'tokio/net',
-    'tokio/fs',
-    'reqwest/rustls-tls',
-    'tokio-tungstenite/rustls-tls-webpki-roots',
-    'home',
-    'include-zstd',
-    'zstd'
-]
+native-tls = [ 'reqwest/default', 'tokio-tungstenite/native-tls' ]
+native-tls-vendored = [ "reqwest/native-tls-vendored", "tokio-tungstenite/native-tls-vendored" ]
+rustls-tls-native-roots = [ "reqwest/rustls-tls-native-roots", "tokio-tungstenite/rustls-tls-native-roots" ]
+rustls-tls-webpki-roots = [ "reqwest/rustls-tls-webpki-roots", "tokio-tungstenite/rustls-tls-webpki-roots" ]
+
 wasm = [
     'wasm-base',
     'include-zstd',
