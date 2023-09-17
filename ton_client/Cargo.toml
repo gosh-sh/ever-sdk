@@ -74,7 +74,7 @@ zstd = { default-features = false, optional = true, version = '0.11.0' }
 
 # optional for std
 reqwest = { features = [ 'cookies' ], optional = true, version = '0.11.11' }
-tokio-tungstenite = { features = [ 'rustls' ], optional = true, version = '0.17.1' }
+tokio-tungstenite = { features = [ 'rustls-tls-webpki-roots' ], optional = true, version = '0.17.1' }
 
 # optional for wasm
 indexed_db_futures = { default-features = false, optional = true, version = '0.2.0' }
