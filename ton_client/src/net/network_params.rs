@@ -26,6 +26,8 @@ use std::{fs, path::Path, sync::Arc};
 use ton_block::{Deserializable, GlobalCapabilities};
 use ton_executor::BlockchainConfig;
 
+use super::acki_config;
+
 const ACKI_CONFIG_FILE: &str = "ACKI_CONFIG_FILE";
 const ACKI_GLOBAL_ID: &str = "ACKI_GLOBAL_ID";
 const DEFAULT_ACKI_CONFIG_FILE: &str = "src/blockchain.conf.json";
@@ -131,7 +133,8 @@ pub(crate) async fn query_network_params_from_file() -> ClientResult<(Blockchain
         .and_then(|num| i32::from_str_radix(&num, 10).ok())
         .unwrap_or(DEFAULT_ACKI_GLOBAL_ID);
 
-    let blockchain_config_json = read_str(&config_file_name)?;
+    // let blockchain_config_json = read_str(&config_file_name)?;
+    let blockchain_config_json = acki_config::get_config()?;
     let config = blockchain_config_from_json(&blockchain_config_json)?;
     Ok((config, global_id))
 }
